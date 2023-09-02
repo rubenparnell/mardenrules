@@ -103,6 +103,15 @@
 			  $("#nav-placeholder").load("nav.html");
 			});
 		</script>
+		<script>
+			$(function() {
+			    // Define the title you want to pass
+			    var pageTitle = "Your New Title"; // Change this to the desired title
+		
+			    // Load the navigation bar with the title parameter
+			    $("#nav-placeholder").load("nav.html?title=" + encodeURIComponent(pageTitle));
+			});
+		</script>
 		<!--end of Navigation bar-->
 	
 		<div id ="section2">
