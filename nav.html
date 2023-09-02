@@ -77,7 +77,7 @@
 				<p style="float: left; clear: left"><img src="https://github.com/rubenparnell/mardenrules/blob/main/W6nUDW39.jpg?raw=true" width=100, height=100><p style="float: right; clear: right"><img src="https://github.com/rubenparnell/mardenrules/blob/main/W6nUDW39.jpg?raw=true" width=100, height=100></p>
 				</p>	
 				<br>
-				<h1> Marden High School Rules </h1>
+				<h1 id="page-title">Default Title</h1>
 
 
 
@@ -162,3 +162,12 @@
 				</table>
 				</center>
 		</div>
+	</body>
+ <script>
+    // JavaScript code to set the title dynamically
+    var titleParam = new URLSearchParams(window.location.search).get('title');
+    if (titleParam) {
+        document.getElementById("page-title").innerText = titleParam;
+    }
+</script>
+</html>
