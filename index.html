@@ -95,19 +95,19 @@
 		
 
 	<body>
-		<!--Navigation bar-->
-		<div id="nav-placeholder">
-		</div>
-		<script>
-			$(function() {
-			    // Define the title you want to pass
-			    var pageTitle = "Your New Title"; // Change this to the desired title
-		
-			    // Load the navigation bar with the title parameter
-			    $("#nav-placeholder").load("nav.html?title=" + encodeURIComponent(pageTitle));
-			});
-		</script>
-		<!--end of Navigation bar-->
+	    <!-- Navigation bar placeholder -->
+	    <div id="nav-placeholder"></div>
+	
+	    <!-- JavaScript to load the navigation bar and pass the title -->
+	    <script>
+		$(function() {
+		    // Define the title you want to pass
+		    var pageTitle = "Your New Title"; // Change this to the desired title
+	
+		    // Load the navigation bar with the title parameter
+		    $("#nav-placeholder").load("nav.html?title=" + encodeURIComponent(pageTitle));
+		});
+	    </script>
 	
 		<div id ="section2">
 			<br>
