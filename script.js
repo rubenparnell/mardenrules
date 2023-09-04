@@ -66,6 +66,8 @@ const targetTimes = [
     { hours: 13, minutes: 15 },
     { hours: 14, minutes: 15 },
     { hours: 15, minutes: 15 },
+    { hours: 17, minutes: 15 },
+    { hours: 18, minutes: 15 },
 ];
 
 // Update the countdown every second
