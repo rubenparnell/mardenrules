@@ -1,3 +1,15 @@
+// Function to check if a date is a weekend (Saturday or Sunday)
+function isWeekend(date) {
+    const day = date.getDay();
+    return day === 0 || day === 6;
+}
+
+// Function to check if a date should be skipped based on a list of skipDates
+function shouldSkipDate(date, skipDates) {
+    const dateString = date.toISOString().split('T')[0]; // Get YYYY-MM-DD
+    return skipDates.includes(dateString);
+}
+
 // Function to update the countdown
 function updateCountdown(targetTimes, skipDates) {
     const now = new Date();
@@ -25,7 +37,7 @@ function updateCountdown(targetTimes, skipDates) {
             targetTime.setDate(targetTime.getDate() + 1);
         }
 
-        if (targetTime > now && (closestTime === null || targetTime < closestTime)) {
+        if (closestTime === null || targetTime < closestTime) {
             closestTime = targetTime;
             foundToday = true;
         }
@@ -81,12 +93,12 @@ const targetTimes = [
     { hours: 13, minutes: 15 },
     { hours: 14, minutes: 15 },
     { hours: 15, minutes: 15 },
-    { hours: 19, minutes: 15 },
+    { hours: 17, minutes: 15 },
     { hours: 18, minutes: 15 }
 ];
 
 // Define an array of dates to skip (in YYYY-MM-DD format)
-const skipDates = ["2023-09-04", "2023-09-08"]; // Add dates to be skipped here
+const skipDates = ["2023-09-07", "2023-09-08"]; // Add dates to be skipped here
 
 // Update the countdown every second
 setInterval(function () {
