@@ -46,9 +46,15 @@ function updateCountdown(targetTimes) {
 
 // Define an array of target times
 const targetTimes = [
-    { hours: 8, minutes: 42 },
     { hours: 8, minutes: 45 },
-    { hours: 15, minutes: 15 }
+    { hours: 9, minutes: 10 },
+    { hours: 10, minutes: 10 },
+    { hours: 11, minutes: 10 },
+    { hours: 11, minutes: 30 },
+    { hours: 12, minutes: 30 },
+    { hours: 13, minutes: 15 },
+    { hours: 14, minutes: 15 },
+    { hours: 15, minutes: 15 },
 ];
 
 // Update the countdown every second
