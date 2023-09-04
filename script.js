@@ -98,7 +98,7 @@ const targetTimes = [
 ];
 
 // Define an array of dates to skip (in YYYY-MM-DD format)
-const skipDates = ["2023-09-07", "2023-09-08"]; // Add dates to be skipped here
+const skipDates = ["2023-09-04", "2023-09-05"]; // Add dates to be skipped here
 
 // Update the countdown every second
 setInterval(function () {
