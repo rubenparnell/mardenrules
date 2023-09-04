@@ -1,13 +1,24 @@
 // Function to update the countdown
-function updateCountdown(endTime) {
+function updateCountdown(targetTimes) {
     const now = new Date().getTime();
-    const timeRemaining = endTime - now;
 
-    if (timeRemaining <= 0) {
-        // If the event has already passed, you can handle it here.
-        document.getElementById("countdown-timer").innerHTML = "Event has ended";
+    // Find the closest target time in the array
+    let closestTime = null;
+    for (const time of targetTimes) {
+        const targetTime = new Date();
+        targetTime.setHours(time.hours, time.minutes, 0, 0);
+        if (targetTime > now && (closestTime === null || targetTime < closestTime)) {
+            closestTime = targetTime;
+        }
+    }
+
+    if (closestTime === null) {
+        // If all target times have passed, you can handle it here.
+        document.getElementById("countdown-timer").innerHTML = "All events have ended";
         return;
     }
+
+    const timeRemaining = closestTime - now;
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -20,14 +31,17 @@ function updateCountdown(endTime) {
     document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
 }
 
-// Define the target time (e.g., 09:00:00 for 9 AM)
-const targetTime = new Date();
-targetTime.setHours(9, 0, 0, 0);
+// Define an array of target times
+const targetTimes = [
+    { hours: 8, minutes: 42 },
+    { hours: 8, minutes: 45 },
+    { hours: 15, minutes: 15 },
+];
 
 // Update the countdown every second
 setInterval(function () {
-    updateCountdown(targetTime);
+    updateCountdown(targetTimes);
 }, 1000);
 
 // Initial call to display the countdown immediately
-updateCountdown(targetTime);
+updateCountdown(targetTimes);
