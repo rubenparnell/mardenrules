@@ -7,14 +7,14 @@ document.getElementById("show-admin-buttons").addEventListener("click", function
 });
 
 // Function to apply the lag time
-function applyLagTime() {
-    const lagSeconds = parseInt(document.getElementById("lag-seconds").value, 10);
-    lagMilliseconds = lagSeconds * 1000; // Convert seconds to milliseconds
-    alert("Lag time applied: " + lagSeconds + " seconds");
-}
+//function applyLagTime() {
+//    const lagSeconds = parseInt(document.getElementById("lag-seconds").value, 10);
+//    lagMilliseconds = lagSeconds * 1000; // Convert seconds to milliseconds
+//    alert("Lag time applied: " + lagSeconds + " seconds");
+//}
 
 // Add event listener to the "Apply Lag" button
-document.getElementById("apply-lag").addEventListener("click", applyLagTime);
+// document.getElementById("apply-lag").addEventListener("click", applyLagTime);
 
 
 // Function to update the countdown with a custom lag time
