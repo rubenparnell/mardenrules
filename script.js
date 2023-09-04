@@ -110,6 +110,12 @@ function updateCountdown(targetTimes, skipDates) {
     document.getElementById("next-event-label").innerText = `Until ${nextEventTime} bell on ${nextEventDate}`;
 }
 
+// Add event listener to the "Subtract 1 Second" button
+document.getElementById("subtract-lag").addEventListener("click", function () {
+    lagMilliseconds -= 1000; // Subtract 1 second (1000 milliseconds) from lagMilliseconds
+    updateCountdown(targetTimes, skipDates); // Update the countdown with the new lag time
+});
+
 // Function to update the current time
 function updateCurrentTime() {
     const now = new Date();
