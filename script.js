@@ -1,3 +1,29 @@
+// Function to show admin controls when the correct password is entered
+document.getElementById("show-admin-buttons").addEventListener("click", function () {
+    const password = document.getElementById("admin-password").value;
+    if (password === "yourpassword") { // Change "yourpassword" to your actual admin password
+    document.getElementById("admin-buttons").style.display = "block";
+    }
+});
+
+// Function to apply the lag time
+document.getElementById("apply-lag").addEventListener("click", function () {
+    const lagSeconds = parseInt(document.getElementById("lag-seconds").value);
+    if (!isNaN(lagSeconds)) {
+    updateCountdown(targetTimes, skipDates, lagSeconds * 1000); // Convert seconds to milliseconds
+    document.getElementById("admin-buttons").style.display = "none"; // Hide admin controls after applying lag
+    }
+});
+
+// Rest of your existing JavaScript code here...
+// (The countdown logic, target times, skip dates, etc.)
+
+// Function to update the countdown with a custom lag time
+function updateCountdown(targetTimes, skipDates, lagMilliseconds) {
+    const now = new Date();
+    const currentTime = now.getTime() - lagMilliseconds; // Subtract lag time from current time
+}
+
 // Initialize a default lag time in milliseconds (10 seconds)
 let lagMilliseconds = 0; // 1000 milliseconds = 1 second
 
