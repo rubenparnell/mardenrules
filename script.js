@@ -113,6 +113,7 @@ function updateCountdown(targetTimes, skipDates) {
 // Function to update the current time
 function updateCurrentTime() {
     const now = new Date();
+    now.setSeconds(now.getSeconds() - 1);
     const currentTimeString = now.toLocaleTimeString();
     document.getElementById("current-clock").textContent = currentTimeString;
 }
