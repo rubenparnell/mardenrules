@@ -1,15 +1,36 @@
+// Function to check if a date is a weekend (Saturday or Sunday)
+function isWeekend(date) {
+    const day = date.getDay();
+    return day === 0 || day === 6;
+}
+
+// Function to check if a date should be skipped based on a list of skipDates
+function shouldSkipDate(date, skipDates) {
+    const dateString = date.toISOString().split('T')[0]; // Get YYYY-MM-DD
+    return skipDates.includes(dateString);
+}
+
 // Function to update the countdown
-function updateCountdown(targetTimes) {
+function updateCountdown(targetTimes, skipDates) {
     const now = new Date();
     const currentTime = now.getTime();
 
-    // Find the closest target time in the array
+    // Find the closest target time on weekdays
     let closestTime = null;
     let foundToday = false;
 
     for (const time of targetTimes) {
         const targetTime = new Date(now);
         targetTime.setHours(time.hours, time.minutes, 0, 0);
+
+        // Skip weekends
+        if (isWeekend(targetTime)) {
+            continue;
+        }
+
+        if (shouldSkipDate(targetTime, skipDates)) {
+            continue;
+        }
 
         if (targetTime < now) {
             // If the target time is in the past, move it to the next day
@@ -23,10 +44,15 @@ function updateCountdown(targetTimes) {
     }
 
     if (!foundToday && closestTime === null) {
-        // If there are no more bells today and none scheduled for the future,
-        // set the next event time to the first event of the next day
-        const nextDay = new Date(now);
-        nextDay.setDate(nextDay.getDate() + 1);
+        // If there are no more bells on weekdays today and none scheduled for the future,
+        // find the first event on the next weekday
+        let nextDay = new Date(now);
+        while (true) {
+            nextDay.setDate(nextDay.getDate() + 1);
+            if (!isWeekend(nextDay) && !shouldSkipDate(nextDay, skipDates)) {
+                break;
+            }
+        }
         closestTime = new Date(nextDay);
         closestTime.setHours(targetTimes[0].hours, targetTimes[0].minutes, 0, 0);
     }
@@ -35,7 +61,7 @@ function updateCountdown(targetTimes) {
 
     if (timeRemaining <= 0) {
         // If all target times have passed, you can handle it here.
-        document.getElementById("countdown-timer").innerHTML = "All events have ended";
+        document.getElementById("countdown-timer").innerHTML = "All weekday events have ended";
         return;
     }
 
@@ -55,25 +81,14 @@ function updateCountdown(targetTimes) {
     document.getElementById("next-event-time").innerText = nextEventTime;
 }
 
-// Define an array of target times
-const targetTimes = [
-    { hours: 8, minutes: 45 },
-    { hours: 9, minutes: 10 },
-    { hours: 10, minutes: 10 },
-    { hours: 11, minutes: 10 },
-    { hours: 11, minutes: 30 },
-    { hours: 12, minutes: 30 },
-    { hours: 13, minutes: 15 },
-    { hours: 14, minutes: 15 },
-    { hours: 15, minutes: 15 },
-    { hours: 17, minutes: 15 },
-    { hours: 18, minutes: 15 },
-];
+
+// Define an array of dates to skip (in YYYY-MM-DD format)
+const skipDates = ["2023-09-07", "2023-09-08"]; // Add dates to be skipped here
 
 // Update the countdown every second
 setInterval(function () {
-    updateCountdown(targetTimes);
+    updateCountdown(targetTimes, skipDates);
 }, 1000);
 
 // Initial call to display the countdown immediately
-updateCountdown(targetTimes);
+updateCountdown(targetTimes, skipDates);
