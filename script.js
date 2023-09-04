@@ -1,15 +1,3 @@
-// Function to check if a date is a weekend (Saturday or Sunday)
-function isWeekend(date) {
-    const day = date.getDay();
-    return day === 0 || day === 6;
-}
-
-// Function to check if a date should be skipped based on a list of skipDates
-function shouldSkipDate(date, skipDates) {
-    const dateString = date.toISOString().split('T')[0]; // Get YYYY-MM-DD
-    return skipDates.includes(dateString);
-}
-
 // Function to update the countdown
 function updateCountdown(targetTimes, skipDates) {
     const now = new Date();
@@ -76,9 +64,10 @@ function updateCountdown(targetTimes, skipDates) {
     document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
     document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
 
-    // Update the next event time
+    // Update the next event time and date in the countdown label
     const nextEventTime = closestTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    document.getElementById("next-event-time").innerText = nextEventTime;
+    const nextEventDate = closestTime.toLocaleDateString();
+    document.getElementById("next-event-label").innerText = `Until ${nextEventTime} bell on ${nextEventDate}`;
 }
 
 // Define an array of target times
