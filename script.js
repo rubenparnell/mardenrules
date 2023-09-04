@@ -85,6 +85,13 @@ function updateCountdown(targetTimes, skipDates) {
     document.getElementById("next-event-label").innerText = `Until ${nextEventTime} bell on ${nextEventDate}`;
 }
 
+// Function to update the current time
+function updateCurrentTime() {
+    const now = new Date();
+    const currentTimeString = now.toLocaleTimeString();
+    document.getElementById("current-clock").textContent = currentTimeString;
+}
+
 // Define an array of target times
 const targetTimes = [
     { hours: 8, minutes: 45 },
@@ -100,6 +107,10 @@ const targetTimes = [
 
 // Define an array of dates to skip (in YYYY-MM-DD format)
 const skipDates = ["2023-09-04"]; // Add dates to be skipped here
+
+// Update the current time immediately and every second
+updateCurrentTime(); // Call the function once to display the current time immediately
+setInterval(updateCurrentTime, 1000); // Update the current time every second
 
 // Update the countdown every second
 setInterval(function () {
