@@ -13,7 +13,7 @@ function shouldSkipDate(date, skipDates) {
 // Function to update the countdown
 function updateCountdown(targetTimes, skipDates) {
     const now = new Date();
-    const currentTime = now.getTime();
+    const currentTime = now.getTime() - 25000;
 
     // Find the closest target time on weekdays
     let closestTime = null;
