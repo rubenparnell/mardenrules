@@ -2,21 +2,20 @@
 document.getElementById("show-admin-buttons").addEventListener("click", function () {
     const password = document.getElementById("admin-password").value;
     if (password === "yourpassword") { // Change "yourpassword" to your actual admin password
-    document.getElementById("admin-buttons").style.display = "block";
+        document.getElementById("admin-buttons").style.display = "block";
     }
 });
 
 // Function to apply the lag time
-document.getElementById("apply-lag").addEventListener("click", function () {
-    const lagSeconds = parseInt(document.getElementById("lag-seconds").value);
-    if (!isNaN(lagSeconds)) {
-    updateCountdown(targetTimes, skipDates, lagSeconds * 1000); // Convert seconds to milliseconds
-    document.getElementById("admin-buttons").style.display = "none"; // Hide admin controls after applying lag
-    }
-});
+function applyLagTime() {
+    const lagSeconds = parseInt(document.getElementById("lag-seconds").value, 10);
+    lagMilliseconds = lagSeconds * 1000; // Convert seconds to milliseconds
+    alert("Lag time applied: " + lagSeconds + " seconds");
+}
 
-// Rest of your existing JavaScript code here...
-// (The countdown logic, target times, skip dates, etc.)
+// Add event listener to the "Apply Lag" button
+document.getElementById("apply-lag").addEventListener("click", applyLagTime);
+
 
 // Function to update the countdown with a custom lag time
 function updateCountdown(targetTimes, skipDates, lagMilliseconds) {
