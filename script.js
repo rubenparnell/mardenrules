@@ -1,24 +1,32 @@
 // Function to update the countdown
 function updateCountdown(targetTimes) {
-    const now = new Date().getTime();
+    const now = new Date();
+    const currentTime = now.getTime();
 
     // Find the closest target time in the array
     let closestTime = null;
+
     for (const time of targetTimes) {
-        const targetTime = new Date();
+        const targetTime = new Date(now);
         targetTime.setHours(time.hours, time.minutes, 0, 0);
-        if (targetTime > now && (closestTime === null || targetTime < closestTime)) {
+
+        if (targetTime < now) {
+            // If the target time is in the past, move it to the next day
+            targetTime.setDate(targetTime.getDate() + 1);
+        }
+
+        if (closestTime === null || targetTime < closestTime) {
             closestTime = targetTime;
         }
     }
 
-    if (closestTime === null) {
+    const timeRemaining = closestTime - currentTime;
+
+    if (timeRemaining <= 0) {
         // If all target times have passed, you can handle it here.
         document.getElementById("countdown-timer").innerHTML = "All events have ended";
         return;
     }
-
-    const timeRemaining = closestTime - now;
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -35,7 +43,7 @@ function updateCountdown(targetTimes) {
 const targetTimes = [
     { hours: 8, minutes: 42 },
     { hours: 8, minutes: 45 },
-    { hours: 15, minutes: 15 },
+    { hours: 15, minutes: 15 } // Add 15:15 to the array
 ];
 
 // Update the countdown every second
