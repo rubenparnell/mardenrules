@@ -24,7 +24,7 @@ function updateCountdown(targetTimes, skipDates, lagMilliseconds) {
 }
 
 // Initialize a default lag time in milliseconds (10 seconds)
-let lagMilliseconds = 1; // 1000 milliseconds = 1 second
+let lagMilliseconds = -1; // 1000 milliseconds = 1 second
 
 // Function to check if a date is a weekend (Saturday or Sunday)
 function isWeekend(date) {
