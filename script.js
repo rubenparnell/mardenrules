@@ -33,17 +33,22 @@ function updateCountdown(targetTimes) {
     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
+    // Update the countdown values
     document.getElementById("days").innerText = days.toString().padStart(2, "0");
     document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
     document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
     document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+
+    // Update the next event time
+    const nextEventTime = closestTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    document.getElementById("next-event-time").innerText = nextEventTime;
 }
 
 // Define an array of target times
 const targetTimes = [
     { hours: 8, minutes: 42 },
     { hours: 8, minutes: 45 },
-    { hours: 15, minutes: 15 } // Add 15:15 to the array
+    { hours: 15, minutes: 15 }
 ];
 
 // Update the countdown every second
