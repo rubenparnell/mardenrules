@@ -1,32 +1,5 @@
-// Function to show admin controls when the correct password is entered
-document.getElementById("show-admin-buttons").addEventListener("click", function () {
-    const password = document.getElementById("admin-password").value;
-    if (password === "yourpassword") { // Change "yourpassword" to your actual admin password
-    document.getElementById("admin-buttons").style.display = "block";
-    }
-});
-
-// Function to apply the lag time
-document.getElementById("apply-lag").addEventListener("click", function () {
-    const lagSeconds = parseInt(document.getElementById("lag-seconds").value);
-    if (!isNaN(lagSeconds)) {
-    updateCountdown(targetTimes, skipDates, lagSeconds * 1000); // Convert seconds to milliseconds
-    document.getElementById("admin-buttons").style.display = "none"; // Hide admin controls after applying lag
-    }
-});
-
-// Rest of your existing JavaScript code here...
-// (The countdown logic, target times, skip dates, etc.)
-
-// Function to update the countdown with a custom lag time
-function updateCountdown(targetTimes, skipDates, lagMilliseconds) {
-    const now = new Date();
-    const currentTime = now.getTime() - lagMilliseconds; // Subtract lag time from current time
-
-    // Rest of the code remains unchanged...
-    // (The rest of the code to find the next event, update the countdown, and display date and time)
-}
-
+// Initialize a default lag time in milliseconds (10 seconds)
+let lagMilliseconds = 10000; // 1000 milliseconds = 1 second
 
 // Function to check if a date is a weekend (Saturday or Sunday)
 function isWeekend(date) {
@@ -40,10 +13,10 @@ function shouldSkipDate(date, skipDates) {
     return skipDates.includes(dateString);
 }
 
-// Function to update the countdown
+// Function to update the countdown with a custom lag time
 function updateCountdown(targetTimes, skipDates) {
     const now = new Date();
-    const currentTime = now.getTime() - 25000;
+    const currentTime = now.getTime() - lagMilliseconds; // Subtract lag time from current time
 
     // Find the closest target time on weekdays
     let closestTime = null;
@@ -122,7 +95,7 @@ const targetTimes = [
     { hours: 12, minutes: 30 },
     { hours: 13, minutes: 15 },
     { hours: 14, minutes: 15 },
-    { hours: 15, minutes: 15 },
+    { hours: 15, minutes: 15 }
 ];
 
 // Define an array of dates to skip (in YYYY-MM-DD format)
