@@ -65,3 +65,8 @@ th:nth-child(odd) {
   color: #777;
   margin: 0 auto;
 }
+
+#admin-controls {
+    border: 2px solid #482067; /* Add a border with 2px width and a dark color */
+    padding: 15px; /* Add some padding to create space between the border and content */
+}
