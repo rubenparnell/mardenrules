@@ -1,7 +1,7 @@
 // Function to show admin controls when the correct password is entered
 document.getElementById("show-admin-buttons").addEventListener("click", function () {
     const password = document.getElementById("admin-password").value;
-    if (password === "yourpassword") { // Change "yourpassword" to your actual admin password
+    if (password === "ILoveSchool") { // Change "yourpassword" to your actual admin password
         document.getElementById("admin-buttons").style.display = "block";
     }
 });
