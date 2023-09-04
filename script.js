@@ -5,6 +5,7 @@ function updateCountdown(targetTimes) {
 
     // Find the closest target time in the array
     let closestTime = null;
+    let foundToday = false;
 
     for (const time of targetTimes) {
         const targetTime = new Date(now);
@@ -15,9 +16,19 @@ function updateCountdown(targetTimes) {
             targetTime.setDate(targetTime.getDate() + 1);
         }
 
-        if (closestTime === null || targetTime < closestTime) {
+        if (targetTime > now && (closestTime === null || targetTime < closestTime)) {
             closestTime = targetTime;
+            foundToday = true;
         }
+    }
+
+    if (!foundToday && closestTime === null) {
+        // If there are no more bells today and none scheduled for the future,
+        // set the next event time to the first event of the next day
+        const nextDay = new Date(now);
+        nextDay.setDate(nextDay.getDate() + 1);
+        closestTime = new Date(nextDay);
+        closestTime.setHours(targetTimes[0].hours, targetTimes[0].minutes, 0, 0);
     }
 
     const timeRemaining = closestTime - currentTime;
