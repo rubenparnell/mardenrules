@@ -70,3 +70,13 @@ th:nth-child(odd) {
     border: 2px solid #482067; /* Add a border with 2px width and a dark color */
     padding: 15px; /* Add some padding to create space between the border and content */
 }
+
+.current-time {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 20px;
+  display: inline-block;
+  text-align: center;
+}
