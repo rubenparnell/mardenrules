@@ -148,6 +148,9 @@ const skipDates = ["2023-09-04"]; // Add dates to be skipped here
 // Update the current time immediately and every second
 updateCurrentTime(); // Call the function once to display the current time immediately
 setInterval(updateCurrentTime, 1000); // Update the current time every second
+updateCurrentSchoolTime(); // Call the function once to display the current time immediately
+setInterval(updateCurrentSchoolTime, 1000); // Update the current time every second
+
 
 // Update the countdown every second
 setInterval(function () {
