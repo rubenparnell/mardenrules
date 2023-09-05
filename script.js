@@ -1,7 +1,46 @@
+// Function to fetch the lag time from the server
+function fetchLagTime() {
+    fetch('https://example.com/lag.txt')
+        .then(response => response.text())
+        .then(lagSeconds => {
+            // Update the lag time
+            lagMilliseconds = parseInt(lagSeconds, 10) * 1000;
+            alert("Lag time loaded: " + lagSeconds + " seconds");
+        })
+        .catch(error => {
+            console.error('Error fetching lag time:', error);
+        });
+}
+
+// Function to apply the lag time to the server
+function applyLagTime() {
+    const lagSeconds = parseInt(document.getElementById("lag-seconds").value, 10);
+    lagMilliseconds = lagSeconds * 1000; // Convert seconds to milliseconds
+
+    // Update the lag time on the server
+    fetch('https://example.com/update-lag.php', {
+        method: 'POST',
+        body: lagSeconds.toString()
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Lag time applied: " + lagSeconds + " seconds");
+            } else {
+                console.error('Error updating lag time:', response.status, response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Error updating lag time:', error);
+        });
+}
+
+// Fetch the lag time when the page loads
+fetchLagTime();
+
 // Function to show admin controls when the correct password is entered
 document.getElementById("show-admin-buttons").addEventListener("click", function () {
     const password = document.getElementById("admin-password").value;
-    if (password === "ILoveSchool") { // Change "yourpassword" to your actual admin password
+    if (password === "ILoveSchool") {
         document.getElementById("admin-buttons").style.display = "block";
     }
 });
@@ -103,12 +142,14 @@ function updateCountdown(targetTimes, skipDates) {
 document.getElementById("add-lag").addEventListener("click", function () {
     lagMilliseconds += 1000; // Add 1 second (1000 milliseconds) to the lag time
     updateCountdown(targetTimes, skipDates); // Update the countdown immediately
+    applyLagTime()
 });
 
 // Function to subtract 1 second to the lag time
 document.getElementById("subtract-lag").addEventListener("click", function () {
     lagMilliseconds -= 1000; // Subtract 1 second (1000 milliseconds) from lagMilliseconds
     updateCountdown(targetTimes, skipDates); // Update the countdown with the new lag time
+    applyLagTime()
 });
 
 // Function to update the current time
