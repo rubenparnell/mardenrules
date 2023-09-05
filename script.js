@@ -1,42 +1,3 @@
-/*// Function to fetch the lag time from the server
-function fetchLagTime() {
-    fetch('https://example.com/lag.txt')
-        .then(response => response.text())
-        .then(lagSeconds => {
-            // Update the lag time
-            lagMilliseconds = parseInt(lagSeconds, 10) * 1000;
-            alert("Lag time loaded: " + lagSeconds + " seconds");
-        })
-        .catch(error => {
-            console.error('Error fetching lag time:', error);
-        });
-}
-
-// Function to apply the lag time to the server
-function applyLagTime() {
-    const lagSeconds = parseInt(document.getElementById("lag-seconds").value, 10);
-    lagMilliseconds = lagSeconds * 1000; // Convert seconds to milliseconds
-
-    // Update the lag time on the server
-    fetch('https://example.com/update-lag.php', {
-        method: 'POST',
-        body: lagSeconds.toString()
-    })
-        .then(response => {
-            if (response.ok) {
-                alert("Lag time applied: " + lagSeconds + " seconds");
-            } else {
-                console.error('Error updating lag time:', response.status, response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Error updating lag time:', error);
-        });
-}
-
-// Fetch the lag time when the page loads
-fetchLagTime();
-*/
 // Function to show admin controls when the correct password is entered
 document.getElementById("show-admin-buttons").addEventListener("click", function () {
     const password = document.getElementById("admin-password").value;
@@ -52,7 +13,7 @@ function updateCountdown(targetTimes, skipDates, lagMilliseconds) {
 }
 
 // Initialize a default lag time in milliseconds (10 seconds)
-let lagMilliseconds = 0; // 1000 milliseconds = 1 second
+let lagMilliseconds = 26000; // 1000 milliseconds = 1 second
 
 // Function to check if a date is a weekend (Saturday or Sunday)
 function isWeekend(date) {
