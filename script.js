@@ -1,4 +1,4 @@
-// Function to fetch the lag time from the server
+/*// Function to fetch the lag time from the server
 function fetchLagTime() {
     fetch('https://example.com/lag.txt')
         .then(response => response.text())
@@ -36,7 +36,7 @@ function applyLagTime() {
 
 // Fetch the lag time when the page loads
 fetchLagTime();
-
+*/
 // Function to show admin controls when the correct password is entered
 document.getElementById("show-admin-buttons").addEventListener("click", function () {
     const password = document.getElementById("admin-password").value;
