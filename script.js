@@ -121,6 +121,14 @@ function updateCurrentTime() {
     document.getElementById("current-clock").textContent = currentTimeString;
 }
 
+// Function to update the current time
+function updateCurrentSchoolTime() {
+    const now = new Date();
+    now.setSeconds(now.getSeconds() + 1 - 26);
+    const currentSchoolTimeString = now.toLocaleTimeString();
+    document.getElementById("current-school-clock").textContent = currentSchoolTimeString;
+}
+
 // Define an array of target times
 const targetTimes = [
     { hours: 8, minutes: 45 },
