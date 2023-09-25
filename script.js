@@ -13,7 +13,7 @@ function updateCountdown(targetTimes, skipDates, lagMilliseconds) {
 }
 
 // Initialize a default lag time in milliseconds (10 seconds)
-let lagMilliseconds = 26000; // 1000 milliseconds = 1 second
+let lagMilliseconds = 46000; // 1000 milliseconds = 1 second
 
 // Function to check if a date is a weekend (Saturday or Sunday)
 function isWeekend(date) {
@@ -124,7 +124,7 @@ function updateCurrentTime() {
 // Function to update the current time
 function updateCurrentSchoolTime() {
     const now = new Date();
-    now.setSeconds(now.getSeconds() + 1 - 26);
+    now.setSeconds(now.getSeconds() + 1 - 46);
     const currentSchoolTimeString = now.toLocaleTimeString();
     document.getElementById("current-school-clock").textContent = currentSchoolTimeString;
 }
